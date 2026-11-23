@@ -1,0 +1,103 @@
+#include&lt;iostream&gt;
+using namespace std;
+
+class Queue{
+private:
+int queue[5];
+int front;
+int rear;
+int size;
+public:
+Queue(){
+size=5;
+front=-1;
+rear=-1;
+}
+void insert(int value){
+if (rear==size-1){
+cout&lt;&lt;&quot;Queue Is Full&quot;&lt;&lt;endl;
+return;
+}
+if(front==-1){
+front=0;
+}
+rear++;
+queue[rear]=value;
+cout&lt;&lt;&quot;Element Inserted&quot;&lt;&lt;endl;
+
+}
+void display(){
+if(front==-1){
+cout&lt;&lt;&quot;Queue Is Empty&quot;&lt;&lt;endl;
+return;
+}
+for(int i=front;i&lt;=rear;i++){
+cout&lt;&lt;queue[i]&lt;&lt;&quot; &quot;;
+}
+
+}
+void peek(){
+if(front==-1){
+cout&lt;&lt;&quot;Queue Is Empty&quot;&lt;&lt;endl;
+return;
+}
+cout&lt;&lt;&quot;\nFirst value &quot;&lt;&lt;queue[front];
+
+}
+void dequeue(){
+if(front==-1){
+cout&lt;&lt;&quot;Queue Is Empty&quot;&lt;&lt;endl;
+front=rear=-1;
+return;
+}
+cout&lt;&lt;&quot;Deleted Element:&quot;&lt;&lt;queue[front];
+front++;
+if (front&gt;rear){
+front=rear=-1;
+}
+
+}
+};
+int main(){
+int Value;
+
+Queue a;
+int choice ;
+do
+{
+
+cout &lt;&lt; &quot;\n========Queue Menu========&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;\n1.Insurt &quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;\n2.Delete&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;\n3.Peek&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;\n4.Display &quot;&lt;&lt; endl;
+cout &lt;&lt; &quot;\n5.Exit&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;Enter your Choice :-&quot;;
+cin &gt;&gt; choice;
+cin.ignore();
+switch (choice)
+{
+case 1:
+cout &lt;&lt; &quot;Enter book name:-&quot;;
+cin&gt;&gt;Value;
+a.insert(Value);
+break;
+case 2:
+a.dequeue();
+break;
+case 3:
+a.peek();
+break;
+case 4:
+a.display();
+break;
+case 5:
+cout &lt;&lt; &quot;exit&quot; &lt;&lt; endl;
+break;
+default:
+cout &lt;&lt; &quot;Invalid Input&quot; &lt;&lt; endl;
+
+break;
+}
+} while (choice != 5);
+return 0;
