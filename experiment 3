@@ -1,0 +1,141 @@
+#include &lt;iostream&gt;
+using namespace std;
+struct Node
+{
+int data;
+Node *next;
+};
+class linkedlist
+{
+private:
+Node *head;
+public:
+linkedlist()
+{
+head = NULL;
+}
+void createlist(){
+int n, value;
+cout &lt;&lt; &quot;\nEnter number of Nodes: &quot;;
+cin &gt;&gt; n;
+if (n &lt;= 0)
+{
+cout &lt;&lt; &quot;List is Empty&quot;;
+return;
+}
+for (int i = 1; i &lt;= n; i++)
+{
+cout &lt;&lt; &quot;\nEnter value&quot; &lt;&lt; i &lt;&lt; &quot;:&quot;;
+cin &gt;&gt; value;
+insertEnd(value);
+}
+cout &lt;&lt; &quot;Linklist is created&quot; &lt;&lt; endl;
+}
+void insertEnd(int value){
+Node *newNode = new Node;
+newNode-&gt;data = value;
+
+newNode-&gt;next = NULL;
+if (head == NULL)
+{
+head = newNode;
+return;
+}
+Node *temp = head;
+while (temp-&gt;next != NULL)
+{
+temp = temp-&gt;next;
+}
+temp-&gt;next = newNode;
+}
+void display(){
+if (head == NULL)
+{
+cout &lt;&lt; &quot;\nLinkedlist is Empty.\n&quot;;
+return;
+}
+Node *temp = head;
+cout &lt;&lt; &quot;\nLinklist:&quot;;
+while (temp != NULL)
+{
+cout &lt;&lt; temp-&gt;data &lt;&lt; &quot;-&gt;&quot;;
+temp = temp-&gt;next;
+}
+}
+void deleteNode(){
+if(head==NULL)
+{
+cout&lt;&lt;&quot;\nList is Empty.\n&quot;;
+return;
+}
+int value;
+cout&lt;&lt;&quot;\nEnter value to delete: &quot;;
+cin&gt;&gt;value;
+Node *temp=head;
+Node *previous=NULL;
+if(head-&gt;data==value)
+{
+head=head-&gt;next;
+
+delete temp;
+cout&lt;&lt;&quot;\nNode Deleted.\n&quot;;
+return;
+}
+while(temp!=NULL &amp;&amp; temp-&gt;data!=value)
+{
+previous=temp;
+temp=temp-&gt;next;
+}
+if(temp==NULL)
+{
+cout&lt;&lt;&quot;\nValue Not Found.\n&quot;;
+return;
+}
+previous-&gt;next=temp-&gt;next;
+delete temp;
+cout&lt;&lt;&quot;\nNode Deleted Successfully.\n&quot;;
+}
+};
+int main()
+{
+linkedlist L;
+int choice = 0;
+do
+{
+cout &lt;&lt; &quot;\n========LinkedList Menu========&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;1.Create LinkedList&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;2.Insert element at end&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;3.Delete Node&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;4.Display Linkedlist&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;5.Exit&quot; &lt;&lt; endl;
+cout &lt;&lt; &quot;Enter your Choice :-&quot;;
+cin &gt;&gt; choice;
+cin.ignore();
+switch (choice)
+{
+case 1:
+L.createlist();
+
+break;
+case 2:
+int value;
+cout &lt;&lt; &quot;Enter value&quot;;
+cin&gt;&gt;value;
+L.insertEnd(value);
+break;
+case 3:
+L.deleteNode();
+break;
+case 4:
+L.display();
+break;
+case 5:
+cout &lt;&lt; &quot;exit&quot; &lt;&lt; endl;
+break;
+default:
+cout &lt;&lt; &quot;Invalid Input&quot; &lt;&lt; endl;
+break;
+}
+} while (choice != 5);
+return 0;
+}
