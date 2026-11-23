@@ -1,0 +1,122 @@
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+#define MAX 5
+
+class Stack
+{
+private:
+string books[MAX];
+int top;
+
+public:
+Stack()
+{
+top = -1;
+
+}
+// Return Book (Push)
+void push(string book)
+{
+if (top == MAX - 1)
+{
+cout &lt;&lt; &quot;Stack is full.\n&quot;;
+return;
+}
+top++;
+books[top] = book;
+cout &lt;&lt; book &lt;&lt; &quot; returned successfully.\n&quot;;
+}
+
+// Arrange Book (Pop)
+void pop()
+{
+if (top == -1)
+{
+cout &lt;&lt; &quot;Stack is empty.\n&quot;;
+return;
+}
+cout &lt;&lt; books[top] &lt;&lt; &quot; arranged on the shelf.\n&quot;;
+top--;
+}
+
+// Top Book (Peek)
+void peek()
+{
+if (top == -1)
+{
+cout &lt;&lt; &quot;No books in the stack.\n&quot;;
+return;
+}
+cout &lt;&lt; &quot;Top Book: &quot; &lt;&lt; books[top] &lt;&lt; endl;
+}
+
+// Display Stack
+void display()
+{
+if (top == -1)
+{
+cout &lt;&lt; &quot;Stack is empty.\n&quot;;
+return;
+}
+
+cout &lt;&lt; &quot;\nBooks in Stack (Top to Bottom):\n&quot;;
+for (int i = top; i &gt;= 0; i--)
+{
+cout &lt;&lt; books[i] &lt;&lt; endl;
+
+}
+}
+};
+
+int main()
+{
+Stack s;
+int choice;
+string book;
+
+do
+{
+cout &lt;&lt; &quot;\n===== Library Stack Menu =====\n&quot;;
+cout &lt;&lt; &quot;1. Return Book (Push)\n&quot;;
+cout &lt;&lt; &quot;2. Arrange Book (Pop)\n&quot;;
+cout &lt;&lt; &quot;3. Top Book (Peek)\n&quot;;
+cout &lt;&lt; &quot;4. Display Stack\n&quot;;
+cout &lt;&lt; &quot;5. Exit\n&quot;;
+cout &lt;&lt; &quot;Enter your choice: &quot;;
+cin &gt;&gt; choice;
+
+switch (choice)
+{
+case 1:
+cout &lt;&lt; &quot;Enter Book Name: &quot;;
+
+getline(cin, book);
+s.push(book);
+break;
+
+case 2:
+s.pop();
+break;
+
+case 3:
+s.peek();
+break;
+
+case 4:
+s.display();
+break;
+
+case 5:
+cout &lt;&lt; &quot;Exiti\n&quot;;
+break;
+
+default:
+cout &lt;&lt; &quot;Invalid Choice!\n&quot;;
+}
+
+} while (choice != 5);
+
+return 0;
+}
